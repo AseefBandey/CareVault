@@ -65,6 +65,24 @@ export const AuthProvider: React.FC<React.PropsWithChildren> = ({ children }) =>
 
   const signInWithEmail = useCallback(async (email: string, password: string) => {
     setAuthError(null);
+    if (!configured) {
+      const cleanEmail = email.trim();
+      const demoEmailUser: VaultUser = {
+        id: `demo-${cleanEmail.replace(/[^a-zA-Z0-9]/g, '')}`,
+        email: cleanEmail,
+        user_metadata: { full_name: cleanEmail.split('@')[0] },
+      };
+      const demoEmailSession: VaultSession = {
+        access_token: 'demo-email-token',
+        refresh_token: 'demo-email-refresh',
+        expires_at: 4102444800,
+        user: demoEmailUser,
+      };
+      window.sessionStorage.setItem(DEMO_SESSION_KEY, JSON.stringify(demoEmailSession));
+      setUser(demoEmailUser);
+      setSession(demoEmailSession);
+      return;
+    }
     try {
       const result = await authService.signInWithEmail(email, password);
       setSession(result.session);
@@ -74,10 +92,28 @@ export const AuthProvider: React.FC<React.PropsWithChildren> = ({ children }) =>
       setAuthError(message);
       throw error;
     }
-  }, []);
+  }, [configured]);
 
   const signUpWithEmail = useCallback(async (email: string, password: string) => {
     setAuthError(null);
+    if (!configured) {
+      const cleanEmail = email.trim();
+      const demoEmailUser: VaultUser = {
+        id: `demo-${cleanEmail.replace(/[^a-zA-Z0-9]/g, '')}`,
+        email: cleanEmail,
+        user_metadata: { full_name: cleanEmail.split('@')[0] },
+      };
+      const demoEmailSession: VaultSession = {
+        access_token: 'demo-email-token',
+        refresh_token: 'demo-email-refresh',
+        expires_at: 4102444800,
+        user: demoEmailUser,
+      };
+      window.sessionStorage.setItem(DEMO_SESSION_KEY, JSON.stringify(demoEmailSession));
+      setUser(demoEmailUser);
+      setSession(demoEmailSession);
+      return;
+    }
     try {
       const result = await authService.signUpWithEmail(email, password);
       if (result.session && result.user) {
@@ -89,7 +125,7 @@ export const AuthProvider: React.FC<React.PropsWithChildren> = ({ children }) =>
       setAuthError(message);
       throw error;
     }
-  }, []);
+  }, [configured]);
 
   const sendPhoneCode = useCallback(async (phone: string) => {
     setAuthError(null);
@@ -108,9 +144,37 @@ export const AuthProvider: React.FC<React.PropsWithChildren> = ({ children }) =>
 
   const signInWithGoogle = useCallback(async () => {
     setAuthError(null);
-    try { await authService.signInWithGoogle(); }
-    catch (error) { const message = error instanceof Error ? error.message : 'Google sign-in could not start.'; setAuthError(message); throw error; }
-  }, []);
+    if (!configured) {
+      // Instant demo login simulation with Google profile
+      const googleUser: VaultUser = {
+        id: 'carevault-google-demo-user',
+        email: 'alex.morgan.health@gmail.com',
+        user_metadata: {
+          full_name: 'Alex Morgan',
+          name: 'Alex Morgan',
+          provider: 'google',
+          avatar_url: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Alex',
+        },
+      };
+      const googleSession: VaultSession = {
+        access_token: 'google-demo-token',
+        refresh_token: 'google-demo-refresh',
+        expires_at: 4102444800,
+        user: googleUser,
+      };
+      window.sessionStorage.setItem(DEMO_SESSION_KEY, JSON.stringify(googleSession));
+      setUser(googleUser);
+      setSession(googleSession);
+      return;
+    }
+    try {
+      await authService.signInWithGoogle();
+    } catch (error) {
+      const message = error instanceof Error ? error.message : 'Google sign-in could not start. Check your Supabase Google OAuth provider configuration.';
+      setAuthError(message);
+      throw error;
+    }
+  }, [configured]);
 
   const signInDemo = useCallback(async (username: string, password: string) => {
     setAuthError(null);

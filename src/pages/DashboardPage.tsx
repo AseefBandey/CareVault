@@ -1497,8 +1497,36 @@ const DashboardPage: React.FC = () => {
               </form>
 
               <div className="auth-divider" style={{ marginTop: 16 }}><span>or continue with</span></div>
-              <button type="button" className="google-button" disabled={authBusy} onClick={async () => { setAuthBusy(true); try { await signInWithGoogle(); } catch { /* context error */ } finally { setAuthBusy(false); } }}><GoogleGlyph /> Continue with Google</button>
+              <button
+                type="button"
+                className="google-button"
+                disabled={authBusy}
+                onClick={async () => {
+                  setAuthBusy(true);
+                  try {
+                    await signInWithGoogle();
+                    setModal(null);
+                    setNotice({
+                      kind: 'success',
+                      text: configured
+                        ? 'Connecting to Google OAuth…'
+                        : 'Signed in with Google (Demo profile: Alex Morgan).',
+                    });
+                  } catch {
+                    /* context error */
+                  } finally {
+                    setAuthBusy(false);
+                  }
+                }}
+              >
+                <GoogleGlyph /> Continue with Google
+              </button>
               {authError && <div className="form-error"><CircleAlert size={15} /> {authError}</div>}
+              {!configured && (
+                <div style={{ marginTop: '12px', fontSize: '11px', color: 'var(--muted)', textAlign: 'center', lineHeight: 1.4 }}>
+                  ⚡ <b>Showcase Demo:</b> One-click Google sign-in provides an instant verified Google profile (Alex Morgan) for testing.
+                </div>
+              )}
             </section>
           )}
 

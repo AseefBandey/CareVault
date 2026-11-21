@@ -27,7 +27,7 @@ interface AuthResponse {
 
 export const authIsConfigured = (): boolean => {
   const hasPlaceholder = [SUPABASE_URL, SUPABASE_ANON_KEY].some(value =>
-    /YOUR-PROJECT|YOUR_SUPABASE_ANON_KEY|ENTER_YOUR_|placeholder/i.test(value),
+    !value || /YOUR-PROJECT|YOUR_SUPABASE_ANON_KEY|ENTER_YOUR_|placeholder|iucxfrvhlryjnhvtguqm/i.test(value),
   );
   return Boolean(SUPABASE_URL && SUPABASE_ANON_KEY && !hasPlaceholder);
 };
