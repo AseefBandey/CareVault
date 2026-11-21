@@ -1,0 +1,262 @@
+[
+  {
+    "id": "rx-sample-001",
+    "description": "General physician prescription with Augmentin, Pan-40, and Dolo-650",
+    "expected_medicines": [
+      {
+        "name": "Augmentin",
+        "generic": "Amoxicillin + Clavulanic Acid",
+        "form": "Tablet",
+        "strength": "625mg",
+        "dosage": "1-0-1",
+        "frequency": "Twice daily",
+        "duration": "5 days",
+        "instructions": "After food"
+      },
+      {
+        "name": "Pan",
+        "generic": "Pantoprazole",
+        "form": "Tablet",
+        "strength": "40mg",
+        "dosage": "1-0-0",
+        "frequency": "Once daily morning",
+        "duration": "5 days",
+        "instructions": "Before food"
+      },
+      {
+        "name": "Dolo",
+        "generic": "Paracetamol",
+        "form": "Tablet",
+        "strength": "650mg",
+        "dosage": "SOS",
+        "frequency": "As needed (SOS)",
+        "duration": "3 days",
+        "instructions": "After food"
+      }
+    ]
+  },
+  {
+    "id": "rx-sample-002",
+    "description": "Cardiometabolic prescription with Metformin, Telmisartan, and Atorvastatin",
+    "expected_medicines": [
+      {
+        "name": "Glycomet",
+        "generic": "Metformin",
+        "form": "Tablet",
+        "strength": "500mg",
+        "dosage": "1-0-1",
+        "frequency": "Twice daily",
+        "duration": "1 month",
+        "instructions": "After food"
+      },
+      {
+        "name": "Telma",
+        "generic": "Telmisartan",
+        "form": "Tablet",
+        "strength": "40mg",
+        "dosage": "1-0-0",
+        "frequency": "Once daily morning",
+        "duration": "1 month",
+        "instructions": "Standard administration"
+      },
+      {
+        "name": "Atorva",
+        "generic": "Atorvastatin",
+        "form": "Tablet",
+        "strength": "10mg",
+        "dosage": "0-0-1",
+        "frequency": "At bedtime",
+        "duration": "1 month",
+        "instructions": "At bedtime"
+      }
+    ]
+  },
+  {
+    "id": "rx-sample-003",
+    "description": "Pediatric / ENT prescription with Calpol syrup and Azithral",
+    "expected_medicines": [
+      {
+        "name": "Calpol",
+        "generic": "Paracetamol",
+        "form": "Syrup",
+        "strength": "250mg/5ml",
+        "dosage": "SOS",
+        "frequency": "As needed (SOS)",
+        "duration": "3 days",
+        "instructions": "With water"
+      },
+      {
+        "name": "Azithral",
+        "generic": "Azithromycin",
+        "form": "Tablet",
+        "strength": "500mg",
+        "dosage": "1-0-0",
+        "frequency": "Once daily",
+        "duration": "3 days",
+        "instructions": "After food"
+      }
+    ]
+  },
+  {
+    "id": "rx-sample-004",
+    "description": "Respiratory / Asthma prescription with Asthalin and Foracort Inhalers",
+    "expected_medicines": [
+      {
+        "name": "Asthalin",
+        "generic": "Salbutamol (Albuterol)",
+        "form": "Inhaler",
+        "strength": "100mcg",
+        "dosage": "SOS",
+        "frequency": "As needed (SOS)",
+        "duration": "As advised",
+        "instructions": "Inhalation"
+      },
+      {
+        "name": "Foracort",
+        "generic": "Budesonide + Formoterol",
+        "form": "Inhaler",
+        "strength": "200mcg/6mcg",
+        "dosage": "1-0-1",
+        "frequency": "Twice daily",
+        "duration": "1 month",
+        "instructions": "Rinse mouth after inhalation"
+      }
+    ]
+  },
+  {
+    "id": "rx-sample-005",
+    "description": "Gastroenterology / GERD slip with Pan-D and Ondem",
+    "expected_medicines": [
+      {
+        "name": "Pan-D",
+        "generic": "Pantoprazole + Domperidone",
+        "form": "Capsule",
+        "strength": "40mg/30mg",
+        "dosage": "1-0-0",
+        "frequency": "Once daily morning",
+        "duration": "14 days",
+        "instructions": "Before food"
+      },
+      {
+        "name": "Ondem",
+        "generic": "Ondansetron",
+        "form": "Tablet",
+        "strength": "4mg",
+        "dosage": "SOS",
+        "frequency": "As needed (SOS)",
+        "duration": "3 days",
+        "instructions": "Before food"
+      }
+    ]
+  },
+  {
+    "id": "rx-sample-006",
+    "description": "Orthopedics slip with Zerodol-P and Shelcal-500",
+    "expected_medicines": [
+      {
+        "name": "Zerodol-P",
+        "generic": "Aceclofenac + Paracetamol",
+        "form": "Tablet",
+        "strength": "100mg/325mg",
+        "dosage": "1-0-1",
+        "frequency": "Twice daily",
+        "duration": "5 days",
+        "instructions": "After food"
+      },
+      {
+        "name": "Shelcal",
+        "generic": "Calcium + Vitamin D3",
+        "form": "Tablet",
+        "strength": "500mg/250IU",
+        "dosage": "1-0-0",
+        "frequency": "Once daily morning",
+        "duration": "1 month",
+        "instructions": "After food"
+      }
+    ]
+  },
+  {
+    "id": "rx-sample-007",
+    "description": "Endocrinology / Thyroid slip with Thyronorm",
+    "expected_medicines": [
+      {
+        "name": "Thyronorm",
+        "generic": "Levothyroxine",
+        "form": "Tablet",
+        "strength": "50mcg",
+        "dosage": "1-0-0",
+        "frequency": "Once daily morning",
+        "duration": "3 months",
+        "instructions": "Empty stomach morning"
+      }
+    ]
+  },
+  {
+    "id": "rx-sample-008",
+    "description": "Cardiology / Post-PCI slip with Metolar and Rosuvas",
+    "expected_medicines": [
+      {
+        "name": "Metolar",
+        "generic": "Metoprolol",
+        "form": "Tablet",
+        "strength": "25mg",
+        "dosage": "1-0-0",
+        "frequency": "Once daily morning",
+        "duration": "1 month",
+        "instructions": "After food"
+      },
+      {
+        "name": "Rosuvas",
+        "generic": "Rosuvastatin",
+        "form": "Tablet",
+        "strength": "10mg",
+        "dosage": "0-0-1",
+        "frequency": "At bedtime",
+        "duration": "1 month",
+        "instructions": "At bedtime"
+      }
+    ]
+  },
+  {
+    "id": "rx-sample-009",
+    "description": "Allergy / Rhinitis slip with Montair-LC",
+    "expected_medicines": [
+      {
+        "name": "Montair-LC",
+        "generic": "Montelukast + Levocetirizine",
+        "form": "Tablet",
+        "strength": "10mg/5mg",
+        "dosage": "0-0-1",
+        "frequency": "At bedtime",
+        "duration": "10 days",
+        "instructions": "At bedtime"
+      }
+    ]
+  },
+  {
+    "id": "rx-sample-010",
+    "description": "Psychiatry / Neuro clinic slip with Nexito and Zapiz",
+    "expected_medicines": [
+      {
+        "name": "Nexito",
+        "generic": "Escitalopram",
+        "form": "Tablet",
+        "strength": "10mg",
+        "dosage": "1-0-0",
+        "frequency": "Once daily morning",
+        "duration": "1 month",
+        "instructions": "After food"
+      },
+      {
+        "name": "Zapiz",
+        "generic": "Clonazepam",
+        "form": "Tablet",
+        "strength": "0.25mg",
+        "dosage": "0-0-1",
+        "frequency": "At bedtime",
+        "duration": "14 days",
+        "instructions": "At bedtime"
+      }
+    ]
+  }
+]

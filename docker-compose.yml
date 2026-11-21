@@ -1,0 +1,46 @@
+version: '3.8'
+
+services:
+  # Python Computer Vision & OCR Microservice (OpenCV + PaddleOCR + Pydantic)
+  prescription-pipeline:
+    build:
+      context: ./services/prescription-pipeline
+      dockerfile: Dockerfile
+    container_name: carevault-prescription-pipeline
+    ports:
+      - "8000:8000"
+    restart: unless-stopped
+    environment:
+      - PYTHONUNBUFFERED=1
+
+  # CareVault Node.js Core Backend (Supabase auth, RxNorm verification, Safety rails)
+  carevault-api:
+    image: node:20-alpine
+    container_name: carevault-api
+    working_dir: /app
+    volumes:
+      - .:/app
+    ports:
+      - "8787:8787"
+    environment:
+      - NODE_ENV=production
+      - API_PORT=8787
+      - PIPELINE_SERVICE_URL=http://prescription-pipeline:8000
+    command: sh -c "npm install --omit=dev && node server/index.mjs"
+    depends_on:
+      - prescription-pipeline
+    restart: unless-stopped
+
+  # React Web Frontend
+  carevault-web:
+    image: node:20-alpine
+    container_name: carevault-web
+    working_dir: /app
+    volumes:
+      - .:/app
+    ports:
+      - "3000:3000"
+    command: sh -c "npm install && npm run build && npx vite preview --host 0.0.0.0 --port 3000"
+    depends_on:
+      - carevault-api
+    restart: unless-stopped

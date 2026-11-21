@@ -1,0 +1,79 @@
+{
+  "expo": {
+    "name": "CareVault",
+    "slug": "carevault-mobile",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "automatic",
+    "scheme": "carevault",
+    "icon": "./assets/icon.png",
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.carevault.app",
+      "infoPlist": {
+        "NSCameraUsageDescription": "CareVault uses the camera to scan medical documents you choose to save.",
+        "NSPhotoLibraryUsageDescription": "CareVault accesses photos only when you select records to import.",
+        "NSFaceIDUsageDescription": "Use Face ID to protect access to your CareVault records."
+      }
+    },
+    "android": {
+      "package": "com.carevault.app",
+      "adaptiveIcon": {
+        "backgroundColor": "#F4F7F3",
+        "foregroundImage": "./assets/adaptive-icon.png"
+      },
+      "permissions": [
+        "CAMERA",
+        "USE_BIOMETRIC",
+        "USE_FINGERPRINT",
+        "POST_NOTIFICATIONS"
+      ],
+      "intentFilters": [
+        {
+          "action": "VIEW",
+          "autoVerify": false,
+          "data": [
+            {
+              "scheme": "carevault",
+              "host": "share"
+            }
+          ],
+          "category": [
+            "BROWSABLE",
+            "DEFAULT"
+          ]
+        }
+      ]
+    },
+    "plugins": [
+      [
+        "expo-camera",
+        {
+          "cameraPermission": "Allow CareVault to scan medical documents you choose to save.",
+          "recordAudioAndroid": false
+        }
+      ],
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "Allow CareVault to import medical records you select.",
+          "cameraPermission": "Allow CareVault to photograph medical records you choose to save."
+        }
+      ],
+      "expo-document-picker",
+      "expo-secure-store",
+      "expo-notifications",
+      "expo-local-authentication",
+      "expo-font",
+      [
+        "expo-splash-screen",
+        {
+          "backgroundColor": "#F4F7F3",
+          "image": "./assets/icon.png",
+          "imageWidth": 200,
+          "resizeMode": "contain"
+        }
+      ]
+    ]
+  }
+}

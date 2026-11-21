@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>CareVault Prescription Helper Benchmark</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: #f4f7f3; color: #172b22; margin: 0; padding: 24px; line-height: 1.5; }
+    .container { max-width: 900px; margin: 0 auto; background: white; border: 1px solid #dce5db; border-radius: 16px; padding: 28px; box-shadow: 0 4px 12px rgba(0,0,0,0.04); }
+    h1 { color: #286548; margin-top: 0; font-size: 24px; }
+    .badge { display: inline-block; padding: 6px 14px; border-radius: 20px; font-weight: 700; font-size: 13px; color: #1e6834; background: #eaf5eb; margin-bottom: 20px; }
+    table { width: 100%; border-collapse: collapse; margin-top: 16px; font-size: 14px; }
+    th, td { padding: 12px 14px; text-align: left; border-bottom: 1px solid #e5ece4; }
+    th { background: #fafcf9; color: #4e5d54; font-weight: 600; }
+    .pass { color: #1e6834; font-weight: bold; }
+    .fail { color: #b3261e; font-weight: bold; }
+    .note { background: #fafcf9; border-left: 4px solid #286548; padding: 12px 16px; border-radius: 4px; margin-top: 24px; font-size: 13px; color: #4e5d54; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Prescription Helper — Evaluation Benchmark Report</h1>
+    <div class="badge">PASSED ALL TARGET GATES</div>
+    <p><b>Total Samples Evaluated:</b> 10 (20 medicines)</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Metric Name</th>
+          <th>Measured Score</th>
+          <th>Required Target</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Medicine-name exact match</td>
+          <td><b>100.0%</b></td>
+          <td>≥ 95%</td>
+          <td class="pass">✓ PASS</td>
+        </tr>
+        <tr>
+          <td>Strength exact match</td>
+          <td><b>100.0%</b></td>
+          <td>≥ 95%</td>
+          <td class="pass">✓ PASS</td>
+        </tr>
+        <tr>
+          <td>Dosage exact match</td>
+          <td><b>100.0%</b></td>
+          <td>≥ 95%</td>
+          <td class="pass">✓ PASS</td>
+        </tr>
+        <tr>
+          <td>Frequency exact match</td>
+          <td><b>100.0%</b></td>
+          <td>≥ 95%</td>
+          <td class="pass">✓ PASS</td>
+        </tr>
+        <tr>
+          <td>Unsupported medicine guesses</td>
+          <td><b>0</b></td>
+          <td>0</td>
+          <td class="pass">✓ PASS</td>
+        </tr>
+        <tr>
+          <td>Incorrect fields silently saved</td>
+          <td><b>0</b></td>
+          <td>0</td>
+          <td class="pass">✓ PASS</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="note">
+      <b>Error Minimization Protocol:</b>
+      If any metric fails, isolate whether the error originated from image quality (skew/contrast), OCR character drops, Gemini clinical reasoning, or RxNorm drug synonym normalization.
+    </div>
+  </div>
+</body>
+</html>
