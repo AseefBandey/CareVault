@@ -959,121 +959,6 @@ h1 { margin: 9px 0 8px; color: #173331; font-family: Manrope, sans-serif; font-s
   border-bottom: none;
 }
 
-/* Portfolio & Recruiter Showcase Banner */
-.showcase-banner {
-  background: linear-gradient(135deg, rgba(20, 125, 113, 0.08) 0%, rgba(33, 163, 144, 0.04) 100%);
-  border: 1px solid rgba(20, 125, 113, 0.22);
-  border-radius: 16px;
-  padding: 16px 20px;
-  margin-bottom: 24px;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  position: relative;
-  box-shadow: 0 4px 20px rgba(20, 125, 113, 0.05);
-}
-
-.showcase-banner-top {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 16px;
-}
-
-.showcase-badge-row {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 6px;
-  margin-bottom: 6px;
-}
-
-.showcase-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-  padding: 2px 9px;
-  background: rgba(20, 125, 113, 0.12);
-  color: var(--teal-dark);
-  font-size: 11px;
-  font-weight: 700;
-  border-radius: 999px;
-  letter-spacing: 0.2px;
-}
-
-.showcase-banner h2 {
-  font-size: 17px;
-  font-weight: 800;
-  color: var(--teal-dark);
-  margin: 0 0 4px;
-  letter-spacing: -0.3px;
-}
-
-.showcase-banner p {
-  font-size: 12px;
-  color: var(--muted-strong);
-  margin: 0;
-  line-height: 1.5;
-}
-
-.showcase-quick-actions {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 8px;
-  padding-top: 4px;
-  border-top: 1px solid rgba(20, 125, 113, 0.12);
-}
-
-.showcase-action-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 6px 12px;
-  background: #ffffff;
-  color: var(--teal-dark);
-  border: 1px solid rgba(20, 125, 113, 0.25);
-  border-radius: 9px;
-  font-size: 12px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.15s ease;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
-}
-
-.showcase-action-btn:hover {
-  background: var(--teal-soft);
-  border-color: var(--teal);
-  transform: translateY(-1px);
-}
-
-.showcase-action-btn.btn-highlight {
-  background: var(--teal);
-  color: #ffffff;
-  border-color: var(--teal-dark);
-}
-
-.showcase-action-btn.btn-highlight:hover {
-  background: var(--teal-dark);
-}
-
-.showcase-toggle-btn {
-  background: transparent;
-  border: 0;
-  color: var(--muted);
-  cursor: pointer;
-  padding: 4px;
-  border-radius: 6px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.showcase-toggle-btn:hover {
-  color: var(--text);
-  background: rgba(0, 0, 0, 0.05);
-}
-
 /* Sample Presets Panel in Upload Modal */
 .sample-presets-panel {
   display: flex;
@@ -1169,39 +1054,6 @@ h1 { margin: 9px 0 8px; color: #173331; font-family: Manrope, sans-serif; font-s
   line-height: 1.6;
 }
 
-.resume-highlight-box {
-  background: #f7faf9;
-  border: 1px solid #c9ded9;
-  border-radius: 12px;
-  padding: 14px;
-  margin-top: 14px;
-}
-
-.resume-highlight-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 8px;
-}
-
-.resume-highlight-header strong {
-  font-size: 12px;
-  color: #13554b;
-}
-
-.resume-bullets {
-  background: #ffffff;
-  border: 1px solid #dbe6e3;
-  border-radius: 8px;
-  padding: 10px 14px;
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-  font-size: 11px;
-  line-height: 1.55;
-  color: #24413c;
-  white-space: pre-wrap;
-  user-select: all;
-}
-
 /* Doctor Shared Record Clinician View */
 .doctor-view-sheet {
   background: #ffffff;
@@ -1234,26 +1086,6 @@ h1 { margin: 9px 0 8px; color: #173331; font-family: Manrope, sans-serif; font-s
 }
 
 /* Dark theme overrides for new elements */
-.theme-dark .showcase-banner {
-  background: linear-gradient(135deg, rgba(20, 125, 113, 0.18) 0%, rgba(33, 163, 144, 0.08) 100%);
-  border-color: rgba(33, 163, 144, 0.35);
-}
-
-.theme-dark .showcase-banner h2 {
-  color: #7ed5c4;
-}
-
-.theme-dark .showcase-action-btn {
-  background: #1e332e;
-  color: #c9e5dd;
-  border-color: #2e4c44;
-}
-
-.theme-dark .showcase-action-btn:hover {
-  background: #25443d;
-  border-color: #7ed5c4;
-}
-
 .theme-dark .sample-presets-panel {
   background: #1b2f2b;
   border-color: #2f5249;
@@ -1268,16 +1100,5 @@ h1 { margin: 9px 0 8px; color: #173331; font-family: Manrope, sans-serif; font-s
 .theme-dark .doctor-view-sheet {
   background: #1c2e2a;
   border-color: #2a433d;
-}
-
-.theme-dark .resume-highlight-box {
-  background: #1c2e2a;
-  border-color: #2a433d;
-}
-
-.theme-dark .resume-bullets {
-  background: #162421;
-  border-color: #2a433d;
-  color: #d7e8e0;
 }
 

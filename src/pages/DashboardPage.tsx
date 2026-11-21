@@ -214,13 +214,12 @@ function recordSearchText(record: MedicalRecord): string {
 }
 
 const DashboardPage: React.FC = () => {
-  const { user, session, loading: authLoading, configured, authError, signInWithEmail, signUpWithEmail, sendPhoneCode, verifyPhoneCode, signInWithGoogle, signInDemo, logout, clearAuthError } = useAuth();
+  const { user, session, loading: authLoading, configured, authError, signInWithEmail, signUpWithEmail, sendPhoneCode, verifyPhoneCode, signInWithGoogle, logout, clearAuthError } = useAuth();
   const [place, setPlace] = useState<MainPlace>('home');
   const [records, setRecords] = useState<MedicalRecord[]>(getInitialPreviewRecords);
   const [people, setPeople] = useState<PersonProfile[]>(getInitialPreviewPeople);
   const [reminders, setReminders] = useState<Reminder[]>(getInitialPreviewReminders);
   const [emergency, setEmergency] = useState<EmergencyProfile>(getInitialPreviewEmergency);
-  const [showcaseOpen, setShowcaseOpen] = useState(true);
   const [dataLoading, setDataLoading] = useState(false);
   const [dataError, setDataError] = useState('');
   const [query, setQuery] = useState('');
@@ -262,8 +261,6 @@ const DashboardPage: React.FC = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isSignUp, setIsSignUp] = useState(false);
-  const [demoUsername, setDemoUsername] = useState('test');
-  const [demoPassword, setDemoPassword] = useState('test');
   const [authBusy, setAuthBusy] = useState(false);
   const [personForm, setPersonForm] = useState({ fullName: '', relationship: 'Parent', dateOfBirth: '' });
   const [personSaving, setPersonSaving] = useState(false);
@@ -380,7 +377,7 @@ const DashboardPage: React.FC = () => {
     setPeople(DEMO_PEOPLE);
     setReminders(DEMO_REMINDERS);
     setEmergency(DEMO_EMERGENCY);
-    setNotice({ kind: 'success', text: 'Sample records restored to initial demo state.' });
+    setNotice({ kind: 'success', text: 'Sample records restored.' });
   };
 
   // Remote Search Debounce
@@ -697,17 +694,6 @@ const DashboardPage: React.FC = () => {
     } finally { setPersonSaving(false); }
   };
 
-  const handleDemoSignIn = async (event: React.FormEvent) => {
-    event.preventDefault();
-    setAuthBusy(true);
-    try {
-      await signInDemo(demoUsername, demoPassword);
-      setModal(null);
-      setNotice({ kind: 'success', text: 'Signed in to local demo.' });
-    } catch { /* context error */ }
-    finally { setAuthBusy(false); }
-  };
-
   const handleEmailAuth = async (event: React.FormEvent) => {
     event.preventDefault();
     setAuthBusy(true);
@@ -993,12 +979,12 @@ const DashboardPage: React.FC = () => {
               <input aria-label="Search records" value={query} onChange={event => { setQuery(event.target.value); if (event.target.value.trim()) setPlace('records'); }} placeholder="Search tests, drugs, doctors…" />
               <kbd>⌘ K</kbd>
             </label>
-            {previewMode && <span className="preview-pill"><span /> Demo mode</span>}
+            {previewMode && <span className="preview-pill"><span /> Local Vault</span>}
             <button type="button" className="icon-button" aria-label={isDark ? 'Light mode' : 'Dark mode'} onClick={() => setIsDark(value => !value)} title={isDark ? 'Switch to light mode' : 'Switch to dark mode'}>
               {isDark ? <Sun size={18} /> : <Moon size={18} />}
             </button>
-            <button type="button" className="icon-button" aria-label="Architecture & Specs" onClick={() => setModal('tech_stack')} title="View architecture & tech stack">
-              <Sparkles size={18} />
+            <button type="button" className="icon-button" aria-label="System Architecture & Specs" onClick={() => setModal('tech_stack')} title="System Architecture & Specifications">
+              <BookOpenText size={18} />
             </button>
             <button type="button" className="icon-button" aria-label="Settings" onClick={() => setModal('settings')} title="Accessibility settings">
               <Globe size={18} />
@@ -1011,71 +997,21 @@ const DashboardPage: React.FC = () => {
                 {profileMenuOpen && (
                   <div className="profile-menu">
                     <div className="profile-menu-identity"><strong>{name}</strong><small>{user?.email || user?.phone}</small></div>
-                    <button type="button" onClick={() => { setProfileMenuOpen(false); setModal('tech_stack'); }}><Sparkles size={16} /> Architecture & Specs</button>
+                    <button type="button" onClick={() => { setProfileMenuOpen(false); setModal('tech_stack'); }}><BookOpenText size={16} /> System Architecture</button>
                     <button type="button" onClick={() => { setProfileMenuOpen(false); setModal('emergency'); }}><ShieldAlert size={16} /> Emergency card</button>
                     <button type="button" onClick={() => { setProfileMenuOpen(false); setModal('reminders'); }}><Bell size={16} /> Follow-up reminders</button>
                     <button type="button" onClick={() => { setProfileMenuOpen(false); setModal('premium'); }}><Crown size={16} /> CareVault Premium</button>
                     <button type="button" onClick={() => { setProfileMenuOpen(false); setModal('privacy'); }}><ShieldCheck size={16} /> Privacy & data</button>
-                    <button type="button" onClick={() => { setProfileMenuOpen(false); handleResetDemoData(); }}><RotateCcw size={16} /> Reset sample data</button>
+                    <button type="button" onClick={() => { setProfileMenuOpen(false); handleResetDemoData(); }}><RotateCcw size={16} /> Reset sample records</button>
                     <button type="button" onClick={async () => { setProfileMenuOpen(false); await logout(); setRecords([]); setPeople([]); setNotice({ kind: 'success', text: 'Signed out.' }); }}><LogOut size={16} /> Sign out</button>
                   </div>
                 )}
               </div>
             ) : (
-              <button type="button" className="top-signin" onClick={openAuth}><UserRound size={16} /> {previewMode ? 'Demo sign in' : 'Sign in'}</button>
+              <button type="button" className="top-signin" onClick={openAuth}><UserRound size={16} /> Sign in</button>
             )}
           </div>
         </header>
-
-        {/* Recruiter & Portfolio Showcase Banner */}
-        {showcaseOpen ? (
-          <section className="showcase-banner" aria-label="Project showcase and recruiter quick tour" style={{ margin: '16px 39px 0' }}>
-            <div className="showcase-banner-top">
-              <div>
-                <div className="showcase-badge-row">
-                  <span className="showcase-badge">⚡ Interactive Live Demo</span>
-                  <span className="showcase-badge">React 19 & TypeScript</span>
-                  <span className="showcase-badge">Gemini 2.5 Flash Multimodal</span>
-                  <span className="showcase-badge">Grounded RAG Guardrails</span>
-                  <span className="showcase-badge">Local-First Storage</span>
-                  <span className="showcase-badge">Expo Android App</span>
-                </div>
-                <h2>CareVault — Personal Health Records Vault & Clinical AI Assistant</h2>
-                <p>A production-grade, privacy-first personal health vault featuring multimodal OCR ingestion, structured medication extraction, interactive longitudinal lab trend charts, and source-grounded RAG Q&A with strict medical safety guardrails.</p>
-              </div>
-              <button type="button" className="showcase-toggle-btn" onClick={() => setShowcaseOpen(false)} title="Dismiss showcase bar">
-                <X size={16} />
-              </button>
-            </div>
-            <div className="showcase-quick-actions">
-              <span style={{ fontSize: '11px', fontWeight: 700, color: 'var(--teal-dark)' }}>Recruiter Quick Tour:</span>
-              <button type="button" className="showcase-action-btn btn-highlight" onClick={() => setModal('ask')}>
-                <Sparkles size={14} /> Ask My Records (AI Q&A)
-              </button>
-              <button type="button" className="showcase-action-btn" onClick={() => setModal('labs')}>
-                <Activity size={14} /> Lab Trends Visualizer
-              </button>
-              <button type="button" className="showcase-action-btn" onClick={() => { setAppointmentPersonId(people[0]?.id || ''); setModal('appointment'); }}>
-                <Clock3 size={14} /> Appointment Prep Pack
-              </button>
-              <button type="button" className="showcase-action-btn" onClick={() => setModal('emergency')}>
-                <ShieldAlert size={14} /> Emergency Medical ID
-              </button>
-              <button type="button" className="showcase-action-btn" onClick={() => loadSampleFile('prescription')}>
-                <Upload size={14} /> Test Document AI OCR
-              </button>
-              <button type="button" className="showcase-action-btn" onClick={() => setModal('tech_stack')}>
-                <BookOpenText size={14} /> Architecture & Resume Specs
-              </button>
-            </div>
-          </section>
-        ) : (
-          <div style={{ display: 'flex', justifyContent: 'flex-end', padding: '8px 39px 0' }}>
-            <button type="button" onClick={() => setShowcaseOpen(true)} style={{ border: 0, background: 'transparent', color: 'var(--teal)', fontSize: '11px', cursor: 'pointer', display: 'inline-flex', alignItems: 'center', gap: '4px' }}>
-              <Sparkles size={12} /> Show Portfolio Tour Banner
-            </button>
-          </div>
-        )}
 
         {dataError && <div className="inline-alert inline-alert-error"><CircleAlert size={17} /><span>{dataError}</span><button type="button" onClick={() => window.location.reload()}>Retry</button></div>}
         {notice && (
@@ -1510,7 +1446,7 @@ const DashboardPage: React.FC = () => {
                       kind: 'success',
                       text: configured
                         ? 'Connecting to Google OAuth…'
-                        : 'Signed in with Google (Demo profile: Alex Morgan).',
+                        : 'Signed in with Google as Alex Morgan.',
                     });
                   } catch {
                     /* context error */
@@ -1522,11 +1458,6 @@ const DashboardPage: React.FC = () => {
                 <GoogleGlyph /> Continue with Google
               </button>
               {authError && <div className="form-error"><CircleAlert size={15} /> {authError}</div>}
-              {!configured && (
-                <div style={{ marginTop: '12px', fontSize: '11px', color: 'var(--muted)', textAlign: 'center', lineHeight: 1.4 }}>
-                  ⚡ <b>Showcase Demo:</b> One-click Google sign-in provides an instant verified Google profile (Alex Morgan) for testing.
-                </div>
-              )}
             </section>
           )}
 
@@ -1539,7 +1470,7 @@ const DashboardPage: React.FC = () => {
               <p className="modal-lede">Verify all extracted fields against the document before saving.</p>
 
               <div className="sample-presets-panel">
-                <span className="sample-presets-label">⚡ Fast Recruiter Demo: Choose a sample clinical document</span>
+                <span className="sample-presets-label">Sample clinical documents for preview:</span>
                 <div className="sample-presets-buttons">
                   <button type="button" className="sample-preset-btn" onClick={() => loadSampleFile('prescription')}>
                     <FileText size={13} /> Sample Prescription (Dr. Khan)
@@ -2273,24 +2204,6 @@ const DashboardPage: React.FC = () => {
                 </div>
               </div>
 
-              <div className="resume-highlight-box">
-                <div className="resume-highlight-header">
-                  <strong>📄 Ready-to-use Resume Bullets (Click to Copy):</strong>
-                  <button type="button" className="button button-secondary button-small" onClick={() => {
-                    const text = `• Engineered CareVault, a HIPAA-aware, local-first personal health record organizer with multi-page OCR document ingestion, structured medication extraction, and interactive longitudinal lab trend charts.
-• Implemented a grounded AI RAG assistant powered by Gemini 2.5 Flash, featuring strict clinical safety guardrails, advice-trap query redirection, and automatic routing of emergency symptoms to emergency services (911/112).
-• Designed a secure, privacy-first data architecture using PostgreSQL Row-Level Security (RLS), SHA-256 content deduplication, revocable time-limited clinician share links with dynamic QR codes, and 100% complete data erasure.
-• Built a unified multi-platform ecosystem with a responsive React 19 / TypeScript web app (WCAG high-contrast, speech synthesis, senior-friendly mode) and an Android-first React Native / Expo counterpart with document camera scanner and biometric authentication.`;
-                    navigator.clipboard.writeText(text);
-                    setNotice({ kind: 'success', text: 'Resume bullets copied to clipboard!' });
-                  }}><Copy size={13} /> Copy All Bullets</button>
-                </div>
-                <pre className="resume-bullets">{`• Engineered CareVault, a HIPAA-aware, local-first personal health record organizer with multi-page OCR document ingestion, structured medication extraction, and interactive longitudinal lab trend charts.
-• Implemented a grounded AI RAG assistant powered by Gemini 2.5 Flash, featuring strict clinical safety guardrails, advice-trap query redirection, and automatic routing of emergency symptoms to emergency services (911/112).
-• Designed a secure, privacy-first data architecture using PostgreSQL Row-Level Security (RLS), SHA-256 content deduplication, revocable time-limited clinician share links with dynamic QR codes, and 100% complete data erasure.
-• Built a unified multi-platform ecosystem with a responsive React 19 / TypeScript web app (WCAG high-contrast, speech synthesis, senior-friendly mode) and an Android-first React Native / Expo counterpart with document camera scanner and biometric authentication.`}</pre>
-              </div>
-
               <div className="modal-actions">
                 <button type="button" className="button button-primary" onClick={closeModal}>Done</button>
               </div>
@@ -2411,10 +2324,10 @@ const DashboardPage: React.FC = () => {
                 </div>
 
                 <div style={{ padding: '12px', background: 'var(--panel-soft)', borderRadius: '10px', border: '1px solid var(--line)', marginTop: '4px' }}>
-                  <strong style={{ display: 'block', fontSize: '13px', marginBottom: '4px' }}>Sample Demo Data</strong>
-                  <small style={{ display: 'block', color: 'var(--muted)', fontSize: '11px', marginBottom: '8px' }}>Reset your local records, people, and reminders back to pristine demo state.</small>
+                  <strong style={{ display: 'block', fontSize: '13px', marginBottom: '4px' }}>Sample Clinical Records</strong>
+                  <small style={{ display: 'block', color: 'var(--muted)', fontSize: '11px', marginBottom: '8px' }}>Reset your local records, family profiles, and reminders to default sample health data.</small>
                   <button type="button" className="button button-secondary button-small" onClick={handleResetDemoData}>
-                    <RotateCcw size={13} /> Reset to Sample Records
+                    <RotateCcw size={13} /> Restore Default Records
                   </button>
                 </div>
               </div>
