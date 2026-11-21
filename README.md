@@ -1,6 +1,6 @@
 # CareVault — Personal Health Records Vault & Clinical AI Assistant
 
-[![Live Web Demo](https://img.shields.io/badge/Live%20Demo-carevault--web-147d71?style=for-the-badge&logo=google-chrome&logoColor=white)](https://dtm1n.github.io/carevault-mobile-android-source/)
+[![Live Web Demo](https://img.shields.io/badge/Live%20Demo-carevault--web-147d71?style=for-the-badge&logo=google-chrome&logoColor=white)]()
 [![React 19](https://img.shields.io/badge/React%2019-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)](https://react.dev/)
 [![TypeScript](https://img.shields.io/badge/TypeScript%205.7-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 [![Vite](https://img.shields.io/badge/Vite%206-646CFF?style=for-the-badge&logo=vite&logoColor=white)](https://vitejs.dev/)
