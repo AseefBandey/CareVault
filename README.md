@@ -14,7 +14,7 @@
 
 ## ⚡ Quick Links & Live Demonstration
 
-- 🌐 **Live Web Application:** [Deployable on GitHub Pages, Vercel, or Netlify](./dist/)
+- 🌐 **Live Web Application:** 
 - 📄 **Architecture & Specifications:** Open via the in-app **"Architecture & Specs"** button or header showcase.
 - 📱 **Mobile Companion App:** React Native (Expo SDK 58) in [`mobile/`](mobile/) with document camera scanner and biometric lock.
 
